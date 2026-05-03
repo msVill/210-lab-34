@@ -58,7 +58,9 @@ class Graph {
     }
 
     void DFS(int start) {
-        vector
+        vector<bool> visited(adjList.size(), false);
+        DFSUtil(start, visited);
+        cout << endl;
     }
 
 };
@@ -74,6 +76,9 @@ int main() {
     Graph g(edges);
     cout << "Graph's adjacency list:\n";
     g.printGraph();
+
+    cout << "\nDFS starting from vertex 0:\n";
+    g.DFS(0);
 
     return 0;
 }

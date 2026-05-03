@@ -24,9 +24,9 @@ class Graph {
         adjList.resize(SIZE);
 
         for(auto &edge : edges) {
-            int src = edges.src;
-            int dest = edges.dest;
-            int weight = edges.weight;
+            int src = edge.src;
+            int dest = edge.dest;
+            int weight = edge.weight;
 
             adjList[src].push_back(make_pair(dest, weight));
             adjList[dest].push_back(make_pair(src, weight));
@@ -34,10 +34,32 @@ class Graph {
         }
     }
 
+    // print the graph:
+    void printGraph() {
+        for(int i = 0; i < adjList.size(); i++) {
+            cout << i << " --> ";
+            for(Pair v : adjList[i]) {
+                cout << "(" << v.first << ", " << v.second << ") ";
+            }
+            cout << endl;
+        }
+    }
 
-}
+};
 
 int main() {
 
+    vector<Edge> edges = {
+        {0,1,12}, {0,2,8}, {0,3,21},
+        {2,3,6}, {2,6,2}, {2,4,4}, {2,5,5},
+        {5,6,6}, {4,5,9}
+    };
+
+    Graph g(edges);
+    cout << "Graph's adjacency list:\n";
+    g.printGraph();
+
     return 0;
 }
+
+//YESSSSS! so exciting, it was just me being dumb

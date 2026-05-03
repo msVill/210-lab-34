@@ -45,6 +45,22 @@ class Graph {
         }
     }
 
+    // DFS:
+    void DFSUtil(int v, vector<bool>& visited) {
+        visited[v] = true;
+        cout << v << " ";
+
+        for(Pair neighbor : adjList[v]) {
+            if(!visited[neighbor.first]) {
+                DFSUtil(neighbor.first, visited);
+            }
+        }
+    }
+
+    void DFS(int start) {
+        vector
+    }
+
 };
 
 int main() {
@@ -63,3 +79,4 @@ int main() {
 }
 
 //YESSSSS! so exciting, it was just me being dumb
+// okay, now,from requirements, i need DFS and BFS. follow my mindmap psuedo!

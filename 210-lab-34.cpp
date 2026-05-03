@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <limits.h>
+#include <limits.h> // Dijkstra's algorithm.
 using namespace std;
 
 const int SIZE = 7;
@@ -13,7 +13,29 @@ struct Edge {
 };
 
 typedef pair<int, int> Pair;
-vector<vector<Pair>> adjList;
+
+class Graph {
+    vector<vector<Pair>> adjList;
+
+    public:
+
+    //Constructor:
+    Graph(vector<Edge> const &edges) {
+        adjList.resize(SIZE);
+
+        for(auto &edge : edges) {
+            int src = edges.src;
+            int dest = edges.dest;
+            int weight = edges.weight;
+
+            adjList[src].push_back(make_pair(dest, weight));
+            adjList[dest].push_back(make_pair(src, weight));
+
+        }
+    }
+
+
+}
 
 int main() {
 

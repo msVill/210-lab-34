@@ -171,21 +171,49 @@ int main() {
     };
 
     Graph g(edges);
-    cout << "Graph's adjacency list:\n";
-    g.printGraph();
+    int choice;
 
-    cout << "\nRoute Exploration (DFS) starting from Campus Hub 0:\n";
-    cout << "Purpose: Exploring possible walking paths through campus\n";
-    g.DFS(0);
+    do {
+        cout << "\nCampus Navigation System Menu:\n";
+        cout << "1. Display Network\n";
+        cout << "2. DFS Traversal\n";
+        cout << "3. BFS Traversal\n";
+        cout << "4. Shortest Paths (Dijkstra)\n";
+        cout << "5. Minimum Spanning Tree\n";
+        cout << "0. Exit\n";
+        cout << "\nEnter Choice: ";
+        cin >> choice;
 
-    cout << "\nLevel-by-Level Exploration (BFS) from Campus Hub 0:\n";
-    cout << "Purpose: Checking nearest reachable buildings first\n";
-    g.BFS(0);
+        switch(choice) {
+            case 1:
+                g.printGraph();
+                break;
 
-    g.dijkstra(0);
+            case 2:
+                g.DFS(0);
+                break;
 
-    g.primMST();
+            case 3:
+                g.BFS(0);
+                break;
 
+            case 4:
+                g.dijkstra(0);
+                break;
+
+            case 5:
+                g.primMST();
+                break;
+
+            case 0:
+                cout << "Exiting program...\n";
+                break;
+
+            default:
+                cout << "Invalid choice.\n";
+        }
+    } while(choice != 0);
+        
     return 0;
 }
 

@@ -89,6 +89,34 @@ class Graph {
         cout << endl;
     }
 
+    void dijkstra(int start) {
+        vector<int> dist(SIZE, INT_MAX);
+        dist[start] = 0;
+
+        priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
+        pq.push(make_pair(0, start));
+
+        while(!pq.empty()) {
+            int u = pq.top().second;
+            pq.pop();
+
+            for(Pair neighbor : adjList[u]) {
+                int v = neighbor.first;
+                int weight = neighbor.second;
+
+                if(dist[u] + weight < dist[v]) {
+                    dist[v] = dist[u] + weight;
+                    pq.push(make_pair(dist[v], v));
+                }
+            }
+        }
+
+        cout << "Shortest path from Campus Hub " << start << ":\n";
+        for(int i = 0; i < SIZE; i++) {
+            cout << start << " -> " << i << " : " << dist[i] << endl;
+        }
+    }
+
 };
 
 int main() {
@@ -113,6 +141,8 @@ int main() {
     cout << "Purpose: Checking nearest reachable buildings first\n";
     g.BFS(0);
 
+    g.dijkstra(0);
+    
     return 0;
 }
 

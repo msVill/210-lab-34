@@ -63,6 +63,14 @@ class Graph {
         cout << endl;
     }
 
+    void BFS(int start) {
+        vector<bool> visited(adjList.size(), false);
+        queue<int> q;
+
+        visited[start] = true;
+        q.push(start);
+    }
+
 };
 
 int main() {

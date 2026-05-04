@@ -117,6 +117,47 @@ class Graph {
         }
     }
 
+    void primMST() {
+        vector<int> key(SIZE, INT_MAX);
+        vector<bool> inMST(SIZE, false);
+        vector<int> parent(SIZE, -1);
+
+        key[0] = 0;
+
+        for(int count = 0; count < SIZE - 1; count++) {
+            int u = -1;
+            int minValue = INT_MAX;
+
+            for(int i = 0; i < SIZE; i++) {
+                if(!inMST[i] && key[i] < minValue) {
+                    minValue = key[i];
+                    u = i;
+                }
+            }
+
+            inMST[u] = true;
+
+            for(Pair neighbor : adjList[u]) {
+                int v = neighbor.first;
+                int weight = neighbor.second;
+
+                if(!inMST[v] && weight < key[v]) {
+                    key[v] = weight;
+                    parent[v] = u;
+                }
+            }
+        }
+
+        cout << "\nMinimum Spanning Tree (Campus Network Optimization):\n";
+        cout << "=====================================================\n";
+
+        for(int i = 1; i < SIZE; i++) {
+            cout << "Connection: Location " << parent[i]
+                << " -> Location " << i
+                << " | Distance: " << key[i] << endl;;
+        }
+    }
+
 };
 
 int main() {
@@ -142,7 +183,9 @@ int main() {
     g.BFS(0);
 
     g.dijkstra(0);
-    
+
+    g.primMST();
+
     return 0;
 }
 

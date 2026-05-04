@@ -69,6 +69,20 @@ class Graph {
 
         visited[start] = true;
         q.push(start);
+
+        while(!q.empty()) {
+            int v = q.front();
+            q.pop();
+            cout << v << " ";
+
+            for(Pair neighbor : adjList[v]) {
+                if(!visited[neighbor.first]) {
+                    visited[neighbor.first] = true;
+                    q.push(neighbor.first);
+                }
+            }
+        }
+        cout << endl;
     }
 
 };
@@ -87,6 +101,9 @@ int main() {
 
     cout << "\nDFS starting from vertex 0:\n";
     g.DFS(0);
+
+    cout << "BFS starting from vertex 0:\n";
+    g.BFS(0);
 
     return 0;
 }

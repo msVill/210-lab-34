@@ -43,15 +43,16 @@ class Graph {
         
             for(Pair v : adjList[i]) {
                cout << " --> Location " << v.first
-                    << " (Distance: " << v.second << ")";
+                    << " (Distance: " << v.second << ")\n";
             }
+            cout << endl;
         }
     }
 
     // DFS:
     void DFSUtil(int v, vector<bool>& visited) {
         visited[v] = true;
-        cout << v << " ";
+        cout << "Visiting Location " << v << endl;
 
         for(Pair neighbor : adjList[v]) {
             if(!visited[neighbor.first]) {
@@ -108,7 +109,8 @@ int main() {
     cout << "Purpose: Exploring possible walking paths through campus\n";
     g.DFS(0);
 
-    cout << "BFS starting from vertex 0:\n";
+    cout << "\nLevel-by-Level Exploration (BFS) from Campus Hub 0:\n";
+    cout << "Purpose: Checking nearest reachable buildings first\n";
     g.BFS(0);
 
     return 0;
